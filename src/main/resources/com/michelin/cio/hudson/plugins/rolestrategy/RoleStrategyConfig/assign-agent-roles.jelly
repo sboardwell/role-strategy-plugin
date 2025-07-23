@@ -31,6 +31,7 @@
   <j:set var="tableid" value="agentRoles"/>
   <j:set var="agentGrantedRoles" value="${it.strategy.getGrantedRolesEntries(it.strategy.SLAVE)}"/>
   <j:set var="agentSIDs" value="${it.strategy.getSidEntries(it.strategy.SLAVE)}"/>
+  <j:set var="neededPermission" value="${it.strategy.AGENT_ROLES_ADMIN}"/>
 
   <table id="${tableid}" class="center-align global-matrix-authorization-strategy-table" name="data">
 
@@ -60,8 +61,8 @@
     </tr>
   </template>
 
-  <l:isAdmin>
+  <l:hasPermission permission="${neededPermission}">
     <br/>
     <local:addButtons sids="${agentSIDs}" tableid="${tableid}" id="newAgentRowTemplate" roles="${agentGrantedRoles}" highlighter="agentTableHighlighter"/>
-  </l:isAdmin>
+  </l:hasPermission>
 </j:jelly>

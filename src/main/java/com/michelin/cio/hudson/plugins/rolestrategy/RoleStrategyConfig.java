@@ -150,7 +150,7 @@ public class RoleStrategyConfig extends ManagementLink {
   @RequirePOST
   @Restricted(NoExternalUse.class)
   public void doRolesSubmit(StaplerRequest req, StaplerResponse rsp) throws IOException, ServletException {
-    Jenkins.get().checkPermission(Jenkins.ADMINISTER);
+    Jenkins.get().checkAnyPermission(RoleBasedAuthorizationStrategy.ADMINISTER_AND_SOME_ROLES_ADMIN);
     // Let the strategy descriptor handle the form
     RoleBasedAuthorizationStrategy.DESCRIPTOR.doRolesSubmit(req, rsp);
     // Redirect to the plugin index page
@@ -163,7 +163,7 @@ public class RoleStrategyConfig extends ManagementLink {
   @RequirePOST
   @Restricted(NoExternalUse.class)
   public void doTemplatesSubmit(StaplerRequest req, StaplerResponse rsp) throws IOException, ServletException {
-    Jenkins.get().checkPermission(Jenkins.ADMINISTER);
+    Jenkins.get().checkPermission(RoleBasedAuthorizationStrategy.ITEM_ROLES_ADMIN);
     // Let the strategy descriptor handle the form
     RoleBasedAuthorizationStrategy.DESCRIPTOR.doTemplatesSubmit(req, rsp);
     // Redirect to the plugin index page
@@ -187,7 +187,7 @@ public class RoleStrategyConfig extends ManagementLink {
   @RequirePOST
   @Restricted(NoExternalUse.class)
   public void doAssignSubmit(StaplerRequest req, StaplerResponse rsp) throws IOException, ServletException {
-    Jenkins.get().checkPermission(Jenkins.ADMINISTER);
+    Jenkins.get().checkAnyPermission(RoleBasedAuthorizationStrategy.ADMINISTER_AND_SOME_ROLES_ADMIN);
     // Let the strategy descriptor handle the form
     RoleBasedAuthorizationStrategy.DESCRIPTOR.doAssignSubmit(req, rsp);
     FormApply.success(".").generateResponse(req, rsp, this);
